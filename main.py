@@ -4,7 +4,7 @@ from pathlib import Path
 import scipy.interpolate
 import math
 
-seg_df = pd.read_csv(r"C:\Users\akj064\OneDrive - Maersk Group\Azure Databricks\PMPH\OUTPUT FILES\GM_output.csv")
+seg_df = pd.read_csv("GM_output.csv")
 
 def get_ft(segmentSize):
     filter_seg = (seg_df['SegmentSize']==segmentSize) 
