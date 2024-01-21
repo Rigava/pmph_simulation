@@ -40,7 +40,8 @@ def main():
     st.title("PMPH Impact by JOSH@I")
     st.subheader("Without data you are just another person with opinion")
     # df,seg_df = load_data()
-    
+    years = df['Year'].unique().tolist()
+    selection = st.sidebar.selectbox('Select the year',years)
     if st.button("Submit"):
         with st.spinner("processing"):
             df['avg_reduction']=1
@@ -54,7 +55,9 @@ def main():
             df_ps['residual_fuel_saving'] = df_ps['emission_red']/3.114
             df_ps['fuelSave_reduction'] = df_ps['residual_fuel_saving'] / df['tot_reduction']
             print(df_ps.head())
-            fil= df_ps['Year']==2023
+            
+
+            fil= df_ps['Year']==selection
             chart_data = df_ps[["segmentSize","fuelSave_reduction"]][fil]
             st.bar_chart(chart_data,x='segmentSize',y='fuelSave_reduction')
 
